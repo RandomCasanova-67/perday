@@ -14,7 +14,7 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-/* Spooky Theme */
+/* --- Spooky Theme --- */
 .spooky-bg {
     background-color: #0d0d0d;
     animation: flicker 4s infinite;
@@ -25,7 +25,7 @@ body {
     20%, 24%, 55% { opacity: 0.7; }
 }
 
-/* Happy Theme */
+/* --- Happy Theme --- */
 .happy-bg {
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
 }
@@ -37,7 +37,7 @@ body {
 
 .hidden { display: none; }
 
-/* Emoji Style */
+/* --- Animations --- */
 .emoji {
     position: absolute;
     font-size: 2rem;
@@ -51,7 +51,12 @@ body {
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
 }
 
-/* Button & Text */
+@keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+/* --- Elements --- */
 button {
     padding: 15px 30px;
     font-size: 1.2rem;
@@ -66,21 +71,30 @@ button {
 
 #timer { font-size: 8rem; color: white; }
 
+/* The Surprise Container (Stacks Image over Text) */
+#surprise-section {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px; 
+}
+
 .reveal-text {
     font-size: 3rem;
     color: #d63384;
     text-shadow: 2px 2px 5px white;
-    margin-bottom: 20px;
 }
 
+/* Combined Image Styles */
 .fade-in-img {
     width: 280px;
-    border: 5px solid white;
+    max-width: 80%; 
+    height: auto;
+    border: 8px solid white;
     border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-@keyframes popIn {
-    from { transform: scale(0); }
-    to { transform: scale(1); }
+.hidden {
+    display: none !important;
 }

@@ -1,3 +1,4 @@
+// 1. Define all elements
 const body = document.getElementById('body');
 const emojiContainer = document.getElementById('emoji-container');
 const startBtn = document.getElementById('start-btn');
@@ -8,7 +9,7 @@ const cuteEmojis = ['❤️', '💖', '💐', '😘', '😏', '💍', '✨'];
 
 let emojiInterval;
 
-// Function to create a floating emoji
+// 2. Function to create floating emojis
 function createEmoji(emojiArray) {
     const emoji = document.createElement('div');
     emoji.classList.add('emoji');
@@ -17,11 +18,10 @@ function createEmoji(emojiArray) {
     emoji.style.animationDuration = (Math.random() * 2 + 3) + "s";
     emojiContainer.appendChild(emoji);
 
-    // Remove emoji after animation finishes
     setTimeout(() => { emoji.remove(); }, 5000);
 }
 
-// Start Spooky Emojis immediately
+// 3. Control the emoji flow
 function startEmojis(type) {
     clearInterval(emojiInterval);
     emojiInterval = setInterval(() => {
@@ -29,13 +29,15 @@ function startEmojis(type) {
     }, 300);
 }
 
+// Start with spooky emojis immediately
 startEmojis('spooky');
 
+// 4. The Click Event
 startBtn.addEventListener('click', () => {
     document.getElementById('setup-section').classList.add('hidden');
     document.getElementById('countdown-section').classList.remove('hidden');
     
-    // Stop spooky emojis during countdown
+    // Clear spooky emojis during countdown
     clearInterval(emojiInterval);
     
     let count = 5;
@@ -47,18 +49,13 @@ startBtn.addEventListener('click', () => {
             timerDisplay.innerText = count;
         } else {
             clearInterval(cd);
-            revealSurprise();
+            document.getElementById('countdown-section').classList.add('hidden');
+            document.getElementById('surprise-section').classList.remove('hidden');
+            
+            // Switch background and start happy emojis
+            body.classList.remove('spooky-bg');
+            body.classList.add('happy-bg');
+            startEmojis('cute');
         }
     }, 1000);
 });
-
-function revealSurprise() {
-    document.getElementById('countdown-section').classList.add('hidden');
-    document.getElementById('surprise-section').classList.remove('hidden');
-    
-    body.classList.remove('spooky-bg');
-    body.classList.add('happy-bg');
-    
-    // Start Cute Emojis
-    startEmojis('cute');
-}
